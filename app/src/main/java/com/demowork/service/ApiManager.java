@@ -6,6 +6,7 @@ import com.demowork.bean.JokeModel;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.FieldMap;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -31,7 +32,23 @@ public interface ApiManager {
     Call<JokeModel> getJokeModel(@Query("page") int page , @Query("pagesize") int pageSeize , @Query("sort") String sort
     , @Query("key") String key, @Query("time") Long time);
 
+    /**
+     * get方式请求
+     * @param url
+     * @param maps
+     * @return
+     */
     @GET("{url}")
-    Call<JokeModel> getJokeModel(@Path("url") String url
+    Call<JokeModel> getJokeModelForGet(@Path("url") String url
     , @QueryMap Map<String ,String> maps);
+
+    /**
+     * post方式请求
+     * @param url
+     * @param maps
+     * @return
+     */
+    @GET("{url}")
+    Call<JokeModel> getJokeModelForPost(@Path("url") String url
+            , @FieldMap Map<String ,String> maps);
 }

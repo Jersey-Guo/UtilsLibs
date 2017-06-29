@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.demowork.base.BaseActivity;
 import com.demowork.bean.JokeModel;
 import com.demowork.service.ApiManager;
-import com.utils_library.commonretrofit.RetrifitUtil;
+import com.utils_library.commonretrofit.RetrofitUtil;
 import com.utils_library.commonutil.LogUtil;
 
 import java.util.HashMap;
@@ -41,7 +41,7 @@ public class BasicRetrofitActivity extends BaseActivity {
 
     private void getData() {
         //创建接口动态代理的实例
-        ApiManager apiManager = RetrifitUtil.getIntance().getRetrofit(this, "").create(ApiManager.class);
+        ApiManager apiManager = RetrofitUtil.getIntance().getRetrofit(this, "").create(ApiManager.class);
         Map<String, String> map = new HashMap();
         map.put("sort", "desc");
         map.put("pagesize", "20");
@@ -49,7 +49,7 @@ public class BasicRetrofitActivity extends BaseActivity {
         map.put("time", String.valueOf(System.currentTimeMillis() / 1000));
 
         //调用请求方法
-        Call<JokeModel> call = apiManager.getJokeModel("list.from", map);
+        Call<JokeModel> call = apiManager.getJokeModelForGet("list.from", map);
         //执行请求获取请求结果
         call.enqueue(new Callback<JokeModel>() {
             @Override

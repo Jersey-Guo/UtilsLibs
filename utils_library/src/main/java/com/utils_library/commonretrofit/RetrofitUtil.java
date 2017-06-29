@@ -23,18 +23,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * on 2017/6/29.
  */
 
-public class RetrifitUtil {
+public class RetrofitUtil {
     private static final String BASE_URL = "http://japi.juhe.cn/joke/content/";
 
     private static class InstanceHolde {
-        static final RetrifitUtil INSTANCE = new RetrifitUtil();
+        static final RetrofitUtil INSTANCE = new RetrofitUtil();
     }
 
-    public static RetrifitUtil getIntance() {
+    public static RetrofitUtil getIntance() {
         return InstanceHolde.INSTANCE;
     }
 
-    private RetrifitUtil() {
+    private RetrofitUtil() {
 
     }
 
