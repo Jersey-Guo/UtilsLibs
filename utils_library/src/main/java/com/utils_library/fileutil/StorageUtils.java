@@ -2,6 +2,7 @@ package com.utils_library.fileutil;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.StatFs;
 import android.os.storage.StorageManager;
@@ -33,7 +34,7 @@ public class StorageUtils {
     private static final String SD_CARD = "sdCard";
     private static final String EXTERNAL_SD_CARD = "externalSdCard";
     private static final String EMULATED_SD_CARD = "emulatedsdCard";
-
+    public static final String TAKE_PHOTO_PATH = "/takePhoto/";
     /**
      * 获取根目录，会根据系统中存在的一个或多个SD卡，剩余容量，自动确定目录路径。
      *
@@ -57,6 +58,20 @@ public class StorageUtils {
 
         return path;
     }
+
+    /**
+     * img的地址
+     * @param filePath 图片地址
+     * @return uri
+     */
+    public static Uri getImgUri(String filePath) {
+        File file = new File(Environment.getExternalStorageDirectory(), filePath + System.currentTimeMillis() + ".jpg");
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+        return Uri.fromFile(file);
+    }
+
 
     /**
      * 获取其他可用地址
@@ -295,7 +310,7 @@ public class StorageUtils {
                         info.setAvailableSize((long) extsf.getBlockSize() * (long) extsf.getAvailableBlocks() / 1024);
                         File file = new File(extsdpath);
                         if (info.getTotalSize() != 0 && file.canWrite()) {
-                            LogUtil.d(true,"sdcard:" + extsdpath);
+                            LogUtil.d(true, "sdcard:" + extsdpath);
                             if (isEmulatedSdCard(info)) {
                                 map.put(EMULATED_SD_CARD, info);
                             } else {
@@ -304,11 +319,11 @@ public class StorageUtils {
                         }
                     }
                 } catch (Exception e) {
-                    LogUtil.e(true,e);
+                    LogUtil.e(true, e);
                 }
             } // if
         } catch (Exception e) {
-            LogUtil.e(true,e);
+            LogUtil.e(true, e);
         }
 
         // 3.读隐藏函数方法 (3.0以上手机才有此方法)
@@ -347,7 +362,7 @@ public class StorageUtils {
                     if (info.getTotalSize() == 0) {
                         continue;
                     }
-                    LogUtil.d(true,"======file:" + path);
+                    LogUtil.d(true, "======file:" + path);
 
                     if (i == 0) {
                         if (isEmulatedSdCard(info)) {
@@ -371,7 +386,7 @@ public class StorageUtils {
                 }
             }
         } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            LogUtil.e(true,e);
+            LogUtil.e(true, e);
         }
 
         List<String> removes = new ArrayList<>();
@@ -433,7 +448,7 @@ public class StorageUtils {
                 blockSize = getFileSize(file);
             }
         } catch (Exception e) {
-            LogUtil.e(true,"获取失败!");
+            LogUtil.e(true, "获取失败!");
         }
         return FormetFileSize(blockSize, sizeType);
     }
@@ -454,7 +469,7 @@ public class StorageUtils {
                 blockSize = getFileSize(file);
             }
         } catch (Exception e) {
-            LogUtil.e(true,"获取失败!");
+            LogUtil.e(true, "获取失败!");
         }
         return FormetFileSize(blockSize);
     }
@@ -475,7 +490,7 @@ public class StorageUtils {
                 size = fis.available();
             } else {
                 file.createNewFile();
-                LogUtil.e(true,"文件不存在!");
+                LogUtil.e(true, "文件不存在!");
             }
         } finally {
             if (fis != null) {

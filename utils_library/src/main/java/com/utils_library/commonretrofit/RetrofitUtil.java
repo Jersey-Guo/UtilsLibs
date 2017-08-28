@@ -64,4 +64,10 @@ public class RetrofitUtil {
                 .client(okHttpClient)
                 .build();
     }
+
+    public static void dowload(){
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .build();
+
+    }
 }

@@ -51,4 +51,13 @@ public interface ApiManager {
     @GET("{url}")
     Call<JokeModel> getJokeModelForPost(@Path("url") String url
             , @FieldMap Map<String ,String> maps);
+    /**
+     * get方式请求
+     * @param url
+     * @param maps
+     * @return
+     */
+    @GET("{url}")
+    Call<String> getJokeJsonlForGet(@Path("url") String url
+            , @QueryMap Map<String ,String> maps);
 }

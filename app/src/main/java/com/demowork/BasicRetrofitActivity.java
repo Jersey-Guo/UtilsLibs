@@ -1,5 +1,6 @@
 package com.demowork;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -36,7 +37,7 @@ public class BasicRetrofitActivity extends BaseActivity {
 
     @Override
     public void setModel() {
-        getData();
+        getNumData();
     }
 
     private void getData() {
@@ -66,11 +67,52 @@ public class BasicRetrofitActivity extends BaseActivity {
                 call.cancel();
             }
 
+
             @Override
             public void onFailure(Call<JokeModel> call, Throwable t) {
                 helloTv.setText(t.toString());
             }
 
+        });
+    }
+
+    private static class AsyncTaskM extends AsyncTask{
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+        }
+
+        @Override
+        protected void onProgressUpdate(Object[] values) {
+            super.onProgressUpdate(values);
+        }
+    }
+
+    public void getNumData(){
+        ApiManager apiManager = RetrofitUtil.getIntance().getRetrofit(this,"").create(ApiManager.class);
+        Map<String,String> map = new HashMap<>();
+        map.put("sort", "desc");
+        map.put("pagesize", "20");
+        map.put("key", "0fa4cd937c5553ff49c5df199f9c1ace");
+        map.put("time", String.valueOf(System.currentTimeMillis() / 1000));
+        Call<String> call = apiManager.getJokeJsonlForGet("list.from", map);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                LogUtil.e(true,response.body());
+                helloTv.setText(response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
         });
     }
 }

@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">utils_library</string>
+    <string name="no_new_version">没有新版本</string>
+    <string name="isupdate_hint">是否升级到%s版本？</string>
+    <string name="new_version_size">新版本大小：</string>
+    <string name="update_app">升级</string>
+    <string name="exit_app">退出程序</string>
+    <string name="no_update">暂不升级</string>
+    <string name="no_wifi_isupdate">现在是非WIFI状态，是否要升级？</string>
+    <string name="confirm">确定</string>
+    <string name="cancle">取消</string>
+    <string name="download_press">下载进度</string>
 </resources>
