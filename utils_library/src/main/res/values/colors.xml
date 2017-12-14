@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#26C8AD</color>
+    <color name="colorPrimaryDark">#26C8AD</color>
+    <color name="colorAccent">#26C8AD</color>
     <color name="white">#FFFFFFFF</color>
     <color name="whiteTrans66">#66FFFFFF</color>
     <color name="black">#FF000000</color>
@@ -232,6 +235,6 @@
     <color name="_9">#999999</color>
     <color name="gray1">#e7e4e4</color>
 
-    <color name="colorBackground">#FF4081</color>
+    <color name="colorBackground">#FFF4F4F5</color>
     <color name="colorText">#FFFFFF</color>
 </resources>

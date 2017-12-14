@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.utils_library.R;
@@ -15,6 +16,7 @@ public class RxDialogSureCancel extends RxDialog {
     private TextView mTvSure;
     private TextView mTvCancel;
     private TextView mTvTitle;
+    private EditText mEvContent;
 
     public void setTitle(String title) {
         mTvTitle.setText(title);
@@ -26,6 +28,15 @@ public class RxDialogSureCancel extends RxDialog {
 
     public void setContent(String content) {
         this.mTvContent.setText(content);
+    }
+
+    public EditText getmEvContent() {
+        return mEvContent;
+    }
+
+    public void setmEvContent() {
+        this.mEvContent.setVisibility(View.VISIBLE);
+        this.mTvContent.setVisibility(View.GONE);
     }
 
     public TextView getTvContent() {
@@ -58,6 +69,7 @@ public class RxDialogSureCancel extends RxDialog {
 
     private void initView() {
         View dialog_view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_sure_false, null);
+        mEvContent = (EditText) dialog_view.findViewById(R.id.et_content);
         mTvSure = (TextView) dialog_view.findViewById(R.id.tv_sure);
         mTvCancel = (TextView) dialog_view.findViewById(R.id.tv_cancel);
         mTvContent = (TextView) dialog_view.findViewById(R.id.tv_content);

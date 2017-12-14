@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.utils_library.R;
-import com.utils_library.uiutils.ToastUtil;
+import com.utils_library.utils.uiutils.ToastUtil;
 import com.utils_library.view.progressbar.SpinKitView;
 
 

@@ -235,4 +235,9 @@
     <style name="SpinKitView.Small.MultiplePulseRing">
         <item name="SpinKit_Style">MultiplePulseRing</item>
     </style>
+
+    <style name="pop_animation_style" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_show</item>
+        <item name="android:windowExitAnimation">@anim/pop_hide</item>
+    </style>
 </resources>
